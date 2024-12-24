@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&family=Eater&family=Henny+Penny&family=Rubik+Burned&family=Rubik+Wet+Paint&display=swap');
+* {
+    box-sizing: border-box;
+    margin:0px;
+    padding:0;
+}
+body{
+   background-image: url('i.jpg');
+}
+
+.ludo-container {
+    width: 450px;
+    margin: 20px auto;
+}
+
+h2{
+   text-align:center;
+   font-family: "Rubik Burned", serif;
+   font-size:100px;
+   color: aliceblue;
+   border-color: black;
+   font-weight: bolder;
+   
+}
+
+h3{
+    font-family: "Henny Penny", serif;
+    text-align: center;
+    color: aliceblue;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.ludo-container .ludo {
+
+    height: 450px;
+    width: 100%;
+    background-image: url('./ludo-bg.jpg');
+    background-size: contain;
+    position: relative;
+}
+
+.overlay-text{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    align-items: center;
+    z-index:100;
+    color: #0c859a;
+    font-family: "Henny Penny", serif;
+
+}
+
+.overlay-text-small {
+    font-size: .3em;
+}
+
+.overlay-text.visible{
+    display: flex;
+    flex-direction: column;
+    animation: overlay-grow 500ms forwards;
+}
+
+@keyframes overlay-grow {
+    from{
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to{
+        background-color: rgba(0, 0, 0, 0.8);
+        font-size: 10em;
+    }
+}
+
+.player-pieces {
+    height: 100%;
+    width: 100%;
+}
+
+.player-piece {
+    width: 3%;
+    height: 3%;
+    border: 2px solid;
+    border-radius: 10px;
+    position: absolute;
+    transform: translate(50%, 50%);
+    transition: all .2s;
+
+    z-index: 1;
+
+    /* top: 15%;
+    left: 50%; */
+}
+.player-piece.highlight {
+    cursor: pointer;
+    border: 2px dashed;
+    animation: spin 1s infinite linear;
+}
+@keyframes spin {
+    0% {
+        transform: translate(50%, 50%) rotate(0deg);
+    }
+    50% {
+        transform: translate(50%, 50%) rotate(180deg) scale(1.4);
+    }
+    100% {
+        transform: translate(50%, 50%) rotate(360deg);
+    }
+}
+
+[player-id="P1"].player-piece {
+    background-color: #2eafff;
+}
+
+[player-id="P2"].player-piece {
+    background-color: #00b550;
+}
+
+.player-base {
+    width: 40%;
+    height: 40%;
+    border: 30px solid;
+    position: absolute;
+}
+
+.player-bases [player-id="P1"].player-base {
+    bottom: 0;
+    left: 0;
+    border-color: #1295e7;
+}
+
+.player-bases [player-id="P2"].player-base {
+    top: 0;
+    right: 0;
+    border-color: #049645;
+}
+
+.player-base.highlight {
+    animation: border-blink .7s infinite ease-in-out;
+}
+
+@keyframes border-blink {
+    50% {
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+.btn {
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+}
+
+.btn-dice {
+    background-color: #009d60;
+    color: white;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.dice-value {
+    font-size: 24px;
+    font-weight: bold;
+    color:rgb(238, 225, 232);
+}
+
+
+@media (max-width: 600px) {
+    .game-container {
+      grid-template-columns: repeat(2, auto);
+    }
+  
+    .game-info-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
